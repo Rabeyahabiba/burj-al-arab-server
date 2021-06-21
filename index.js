@@ -5,12 +5,16 @@ const admin = require('firebase-admin');
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config()
 // console.log(process.env.DB_PASS)
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.zroly.mongodb.net/burjAlArab?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.zroly.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const port = 5005
 const app = express()
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.send("working")
+})
 
 
 var serviceAccount = require("./configs/burj-f0958-firebase-adminsdk-lmjq3-15cad1059e.json");
